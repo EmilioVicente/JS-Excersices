@@ -11,7 +11,7 @@ let computerPlay = (result) => {
 
 let tablero = document.querySelector(".result2");
 let playerChoice = document.querySelectorAll("button");
-let result = document.createElement("div");
+
 
 
 //Player Choice
@@ -20,28 +20,30 @@ let playerPlay = (e) => {
     let choice = btn.dataset.value;
     tablero.textContent = playRound(choice,computerPlay());
     tablero.className = "result3"; 
-    //theWinner();
+    theWinner();
    };
 
 playerChoice.forEach(choice => choice.addEventListener("click", playerPlay));
 
-/*
+
 function theWinner () {
     if (computerScore == 3) {
+        tablero.className = "result4"
         tablero.textContent = "Ooops, you loose!"
-        computerScore = 0;
-        playerScore = 0;
-        humScore.textContent = playerScore;
-        comScore.textContent = computerScore;
+        tablero.appendChild(reset);
+        reset.textContent = "Reset";
+        reset.className = "reset1"
+        playerChoice.forEach(choice => choice.disabled = true);
     } else if (playerScore == 3) {
+        tablero.className = "result5"
         tablero.textContent = "Great! You win!"
-        computerScore = 0;
-        playerScore = 0;
-        humScore.textContent = playerScore;
-        comScore.textContent = computerScore;
+        tablero.appendChild(reset);
+        reset.textContent = "Reset";
+        reset.className = "reset1";
+        playerChoice.forEach(choice => choice.disabled = true);
     }
 };
-*/
+
 
 //Deciding the winner
 
@@ -84,4 +86,20 @@ if (playerSelec == "rock" && computerSelec == "scissors") {
 } else if (playerSelec == "paper" && computerSelec == "paper") {
     return result = "Tie!";
 }
+};
+
+const reset = document.createElement("button");
+
+reset.addEventListener("click", reseting);
+
+function reseting() {
+    if (tablero.classList == "result4" || tablero.classList == "result5") {
+    humScore.textContent = 0;
+    comScore.textContent = 0;
+    let destroyBtn = tablero.removeChild(reset);
+    tablero.textContent = "Let's try again!"
+    tablero.className = "result2";
+    playerChoice.forEach(choice => choice.disabled = false);
+    destroyBtn;
+    }
 };
