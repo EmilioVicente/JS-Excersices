@@ -9,7 +9,7 @@ let computerPlay = (result) => {
          return result = "paper";
 }};
 
-let tablero = document.querySelector(".result");
+let tablero = document.querySelector(".result2");
 let playerChoice = document.querySelectorAll("button");
 let result = document.createElement("div");
 
@@ -18,8 +18,8 @@ let result = document.createElement("div");
 let playerPlay = (e) => {
     let btn = e.currentTarget;
     let choice = btn.dataset.value;
-    result.textContent = playRound(choice,computerPlay());
-    tablero.appendChild(result);
+    tablero.textContent = playRound(choice,computerPlay());
+    tablero.className = "result3"; 
     //theWinner();
    };
 
